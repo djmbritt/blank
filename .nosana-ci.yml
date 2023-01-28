@@ -9,7 +9,7 @@ global:
       - all
 
 jobs:
-  - name: First Job
+  - name: Create README
     commands:
       - export FOO=BAR
       - echo $FOO
@@ -20,7 +20,7 @@ jobs:
       - name: test
         path: test/
 
-  - name: test
+  - name: Print README
     commands:
       - cat ./test/README.md
     resources:
