@@ -27,6 +27,9 @@ jobs:
     commands:
       - cat ./test/README.md
       - echo $FIZZ
+      - echo $ALICE
+    environment:
+      ALICE: BOB
     resources:
       - name: test
         path: ./
