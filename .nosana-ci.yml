@@ -28,6 +28,8 @@ jobs:
       - ./install-clj-kondo
       - clj-kondo --lint src --dependencies --parallel --copy-configs
 
-      # Compile Nosana
-      - clj -e '(println "Hello World")'
-      - clj -e "(+ 1 2 3 4 5)"
+      # run clojure
+      - touch hello.clj
+      - echo "(println "Hello World")" >> hello.clj
+      - echo "(println (+ 1 2 3 4 5))" >> hello.clj
+      - clj hello.clj
