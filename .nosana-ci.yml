@@ -18,7 +18,7 @@ jobs:
       - echo "Hello, World!" >> mkdir/README.md
     artifacts:
       - name: test
-        path: test/*
+        path: test/
 
   - name: test
     commands:
