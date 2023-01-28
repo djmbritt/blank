@@ -15,7 +15,7 @@ jobs:
       - echo $FOO
       - mkdir test
       - touch test/README.md
-      - echo "Hello, World!" >> mkdir/README.md
+      - echo "Hello, World!" >> test/README.md
     artifacts:
       - name: test
         path: test/
