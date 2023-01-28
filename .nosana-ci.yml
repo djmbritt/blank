@@ -18,11 +18,11 @@ jobs:
       - echo "Hello, World!" >> mkdir/README.md
     artifacts:
       - name: test
-        path: ./test/
+        path: test/
 
   - name: test
     commands:
       - cat ./test/README.md
     resources:
       - name: test
-        path: ./test/
+        path: ./
