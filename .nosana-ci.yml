@@ -7,6 +7,9 @@ global:
   trigger:
     branch:
       - all
+      
+  environment:
+    FIZZ: BUZZ
 
 jobs:
   - name: Create README
@@ -23,6 +26,7 @@ jobs:
   - name: Print README
     commands:
       - cat ./test/README.md
+      - echo $FIZZ
     resources:
       - name: test
         path: ./
