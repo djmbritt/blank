@@ -22,7 +22,7 @@ jobs:
 
   - name: test
     commands:
-      - cat test/README.md
+      - cat ./test/README.md
     resources:
       - name: test
-        path: ./
+        path: ./test/
