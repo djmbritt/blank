@@ -1,30 +1,39 @@
-# .nosana-ci.yml
 nosana:
-    description: Build Nosana Documentation
+  description: Nosana-Node Pipeline
+      
 global:
-    image: registry.hub.docker.com/denoland/deno:latest
+  image: registry.hub.docker.com/library/golang:latest
 
-    # Git, trigger on these branches
-    trigger:
-        branch:
-            - main
+  trigger:
+    branch:
+      - all
 
-    # Environment variables
-    environment:
-        APP_ENV: production # comment here about this var
+  environment:
+    # Specify that apt will be used in noninteractive env. 
+    # https://www.debian.org/releases/sarge/s390/ch05s02.html.en
+    DEBIAN_FRONTEND: noninteractive
 
 jobs:
+  - name: install deps and build container
+    commands:
+      - pwd
+      - go mod init example/hello # Initialize
+      - touch hello.go
+      - echo 'package main' >> hello.go
+      - echo 'import "fmt"' >> hello.go
+      - echo 'func main() { fmt.Println("Hello, World!") }' >> hello.go
+      - echo >> hello.go
+      - cat hello.go
+      - go run hello.go
+      - mkdir build
+      - go build -o build/
+    artifacts:
+      - name: build
+        path: ./build/
 
-    # Init Deno
-    - name: install
-      commands:
-        - deno init
-        - deno run main.ts
-        - deno test
-        - deno bench
-        - deno compile main.ts
-
-    # Deno run external script
-    - name: say
-      commands:
-          - deno run --allow-env --allow-read npm:cowsay@1.5.0/cowthink What to eat?
+  - name: release
+    commands:
+      - ./build/hello
+    resources:
+      - name: build
+      - path: ./
