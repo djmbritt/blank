@@ -26,7 +26,6 @@ jobs:
       - go build -o build/
     artifacts:
       - name: build
-        path: ./build/
 
   - name: release
     commands:
