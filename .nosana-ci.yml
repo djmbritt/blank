@@ -29,4 +29,4 @@ jobs:
       - ./main
     resources:
       - name: build
-        path: ./helloworld
+        path: ./helloworld/build
