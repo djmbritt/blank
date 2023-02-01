@@ -14,19 +14,14 @@ global:
 jobs:
   - name: install deps and build container
     commands:
-      - go mod init example/hello # Initialize
-      - touch hello.go
-      - echo 'package main' >> hello.go
-      - echo 'import "fmt"' >> hello.go
-      - echo 'func main() { fmt.Println("Hello, World!") }' >> hello.go
-      - echo >> hello.go
-      - cat hello.go
-      - go run hello.go
-      - mkdir build
+      - git clone https://github.com/go-training/helloworld
+      - cd helloworld
+      - go run main.go
+      - go test
       - go build -o build/
     artifacts:
       - name: build
-        path: ./
+        path: ./helloworld/
 
   - name: release
     commands:
