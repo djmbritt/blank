@@ -14,17 +14,16 @@ global:
 jobs:
   - name: install deps and build container
     commands:
-      - git clone https://github.com/go-training/helloworld
-      - cd helloworld
+      - git clone https://github.com/go-training/helloworld .
       - go run main.go
       - go build -o build/
     artifacts:
       - name: build
-        path: ./helloworld/
+        path: ./
 
   - name: release
     commands:
-      - ./build/hello
+      - ./build/main
     resources:
       - name: build
         path: ./
