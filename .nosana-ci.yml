@@ -25,7 +25,7 @@ jobs:
 
   - name: release
     commands:
-      - ./build/main
+      - ./main
     resources:
       - name: build
         path: ./
