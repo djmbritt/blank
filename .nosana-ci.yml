@@ -26,7 +26,7 @@ jobs:
   - name: release
     commands:
       - ls -lah
-      - ./main
+      - ./helloworld/main
     resources:
       - name: build
         path: ./
