@@ -21,12 +21,12 @@ jobs:
       - go build main.go
     artifacts:
       - name: build
-        path: ./helloworld/
+        path: ./
 
   - name: release
     commands:
       - ls -lah
-      - ./main
+      - ./helloworld/main
     resources:
       - name: build
-        path: ./helloworld/
+        path: ./
