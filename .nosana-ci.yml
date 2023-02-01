@@ -14,7 +14,7 @@ global:
 jobs:
   - name: install deps and build container
     commands:
-      - git clone https://github.com/go-training/helloworld .
+      - git clone https://github.com/go-training/helloworld ./
       - go run main.go
       - mkdir build/
       - go build main.go -o build
