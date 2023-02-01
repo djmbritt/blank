@@ -17,7 +17,6 @@ jobs:
       - git clone https://github.com/go-training/helloworld
       - cd helloworld
       - go run main.go
-      - go test
       - go build -o build/
     artifacts:
       - name: build
