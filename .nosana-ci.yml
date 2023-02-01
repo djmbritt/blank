@@ -25,6 +25,7 @@ jobs:
 
   - name: release
     commands:
+      - ls -lah
       - ./main
     resources:
       - name: build
