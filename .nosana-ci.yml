@@ -18,7 +18,7 @@ jobs:
       - cd helloworld
       - go run main.go
       - mkdir build/
-      - go build main.go -o build
+      - go build main.go
     artifacts:
       - name: build
         path: ./
