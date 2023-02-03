@@ -1,30 +1,28 @@
 nosana:
-  description: Nosana Python Template
-
+  description: Nosana Go Template
 global:
-  image: registry.hub.docker.com/library/python:latest
-
+  image: registry.hub.docker.com/library/golang:latest
   trigger:
     branch:
       - main
-
+  environment:
+    APP_ENV: devnet
 jobs:
   - name: install deps and build container
     commands:
-      # Initialize
-      - python -m venv count
-      - . count/bin/activate
-      - pip install numpy flake8 pytest
-      - pip freeze > requirements.txt
+      - git clone https://github.com/go-training/helloworld
+      - cd helloworld
+      - go run main.go
+      - mkdir build/
+      - go build main.go
     artifacts:
-      - name: count
-        path: count/
-
-  - name: test
+      - name: build
+        path: ./helloworld/main
+  - name: release
     commands:
-      - . count/bin/activate
-      - pip install -r requirements.txt
-      - pytest -v --cov=count/
+      - ls -lah
+      - ./main
+      - ./helloworld/main
     resources:
-      - name: count
+      - name: build
         path: ./
