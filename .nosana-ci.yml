@@ -13,7 +13,8 @@ jobs:
     commands:
       - git clone https://github.com/go-training/helloworld .
       - go run main.go
-      - go build main.go
+      - go build main.go 
+      - ls -lah
     artifacts:
       - name: build
         path: ./main
