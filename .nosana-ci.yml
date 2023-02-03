@@ -8,21 +8,20 @@ global:
   environment:
     APP_ENV: devnet
 jobs:
+
   - name: install deps and build container
     commands:
-      - git clone https://github.com/go-training/helloworld
-      - cd helloworld
+      - git clone https://github.com/go-training/helloworld .
       - go run main.go
-      - mkdir build/
       - go build main.go
     artifacts:
       - name: build
         path: ./helloworld/main
+        
   - name: release
     commands:
       - ls -lah
       - ./main
-      - ./helloworld/main
     resources:
       - name: build
         path: ./
