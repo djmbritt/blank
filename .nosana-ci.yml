@@ -16,7 +16,7 @@ jobs:
       - go build main.go
     artifacts:
       - name: build
-        path: ./helloworld/main
+        path: ./main
         
   - name: release
     commands:
