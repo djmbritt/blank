@@ -1,29 +1,22 @@
 nosana:
-  description: Nosana Go Template
+  description: Nosana Deno Template
+
 global:
-  image: registry.hub.docker.com/library/golang:latest
+  image: denoland/deno:latest
+
   trigger:
     branch:
       - main
-  environment:
-    APP_ENV: devnet
-jobs:
 
-  - name: install deps and build container
+jobs:
+  - name: install
     commands:
-      - git clone https://github.com/go-training/helloworld 
-      - cd helloworld
-      - go run main.go
-      - go build main.go 
-      - ls -lah
-    artifacts:
-      - name: build
-        path: ./helloworld/main
-        
-  - name: release
+      - deno init
+      - deno run main.ts
+      - deno test
+      - deno bench
+      - deno compile main.ts
+
+  - name: say
     commands:
-      - ls -lah
-      - ./main
-    resources:
-      - name: build
-        path: ./
+      - deno run --allow-env --allow-read npm:cowsay@1.5.0/cowthink Nosana is Fire!
