@@ -1,19 +1,26 @@
 global:
-  image: denoland/deno:latest
-
+  image: alpine:latest
   trigger:
     branch:
-      - main
-
+      - "*"
 jobs:
   - name: install
     commands:
-      - deno init
-      - deno run main.ts
-      - deno test
-      - deno bench
-      - deno compile main.ts
+      - env
+      - mkdir test
+      - touch test/test.md
+      - echo test > test/test.md
+      - mkdir foo
+      - touch foo/bar.md
+      - echo foobar > foo/bar.md
+    artifacts:
+      - name: test
+      - name: foo
 
-  - name: say
+  - name: list
     commands:
-      - deno run --allow-env --allow-read npm:cowsay@1.5.0/cowthink Nosana is Fire!
+      - ls -lah
+      - env
+    resources:
+      - name: test
+      - name: foo
